@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luggage Checklist - Create List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header with back & create buttons -->
+<header style="display:flex; justify-content:space-between; padding:2% 5%; width:100%; box-sizing:border-box;">
+    <button id="back-btn">Back</button>
+    <button id="submit-list-btn">Create</button>
+</header>
+
+<!-- Main form for creating a list -->
+<main style="display:flex; flex-direction:column; gap:5%; padding:5%; width:100%; box-sizing:border-box;">
+    <label> <!-- List name input -->
+        List Name
+        <input type="text" maxlength="50" style="width:100%; padding:2%; box-sizing:border-box;">
+    </label>
+
+    <!-- List type dropdown -->
+    <label>
+        Type
+        <select style="width:100%; padding:2%; box-sizing:border-box;">
+            <option value="">- Select -</option>
+            <option value="vacation">Vacation</option>
+            <option value="business">Business</option>
+            <option value="weekend">Weekend</option>
+            <option value="other">Other</option>
+        </select>
+    </label>
+
+    <!-- Optional expiration date -->
+    <label>
+        Expiration Date
+        <input type="date" style="width:100%; padding:2%; box-sizing:border-box;">
+    </label>
+</main>
+
+<!-- Exit Modal. Exit without saving? -->
+<div id="exit-modal" class="modal hidden">
+    <div class="modal-content">
+        <span id="close-modal" class="close">&times;</span>
+        <p>Are you sure you want to exit without saving?</p>
+        <div style="display:flex; justify-content:space-around; margin-top:1em;">
+            <button id="modal-no">No</button>
+            <button id="modal-yes">Yes</button>
+        </div>
+    </div>
+</div>
+
+<script src="create-list.js"></script>
+<script>
+// DOM elements
+const backBtn = document.getElementById("back-btn");
+const modal = document.getElementById("exit-modal");
+const closeModal = document.getElementById("close-modal");
+const modalNo = document.getElementById("modal-no");
+const modalYes = document.getElementById("modal-yes");
+
+// Show exit modal on back button click
+backBtn.addEventListener("click", () => modal.classList.remove("hidden"));
+closeModal.addEventListener("click", () => modal.classList.add("hidden"));
+modalNo.addEventListener("click", () => modal.classList.add("hidden"));
+// Exit to list page
+modalYes.addEventListener("click", () => window.location.href = "lists.html");
+// Exit if click outside modal
+modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
+</script>
+
+</body>
+</html>

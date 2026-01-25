@@ -1,0 +1,382 @@
+/*  ===== MOBILE styles (reside at the top and are inherited by all devices) ===== */
+/*  ===== See tablet, desktop, and print @media queries at the bottom. */
+
+
+/*   ----- Imports  -----  */
+  /* @import 'node_modules/modern-normalize/modern-normalize.css';  npm install modern-normalize  Resets elements for browser consistency.  https://www.npmjs.com/package/modern-normalize */         
+  /* @import "component1.css";   Component-specific stylesheets, if any.   */
+  @import url('https://fonts.googleapis.com/css2?family=Anton+SC&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet');
+
+  /*   ----- Variables  -----  */
+  :root {
+      --lightBlue: #9fa6ad;
+      --black: #000000;
+      --white: #fffffe;
+      --greyText: #595959;
+      --darkGrey: #444444;
+      /*--custom-color-name:;
+      --custom-embellishment-name:;*/
+    }
+    
+    /*  ----- Viewport ----- elements inherited by all remaining elements ----- */
+    body {
+      background-color:var(--lightBlue);
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      color:var(--black);
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding-left: 10%;
+      padding-right: 10%;
+      max-width: 80%;
+      line-height: 1.5;
+      flex-direction: column;
+    }
+    
+    /*  ----- Page layout blocks -----  */
+    header {
+      background-position: center;
+      color: var(--white);
+      text-align: center;
+      margin:0;
+      border-radius: 20px 20px 20px 20px;
+      width: 80vw;
+    }
+    header img {
+      width: 40px;
+      height: 40px;
+      margin: 0;
+      padding-top: 9px;
+    }
+    main {
+      background-color: var(--white);
+      color: var(--black);
+      padding: 0 10px 1px 10px;
+      border-radius: 20px 20px 20px 20px;
+      margin:0;
+      max-width: 80vw;
+      padding-bottom: 80px;
+    }
+    section {}
+    article {
+    }
+      #topic1 {}
+      #topic2 {}
+    div {}
+    aside {}
+    footer {
+      color: var(--black);
+      padding-left: 10%;
+      padding-right: 10%;
+      max-width: 80%;
+      padding-bottom: 20px;
+    }
+    
+    /* ----- Anchors ----- Text links */
+    a {}
+    a:link {}
+    a:hover {}
+    a:active {}
+    a:visited {}
+    
+    /*  ----- Navigation ----- Override text links for navigation only.  */
+    nav {}
+    nav a {}
+    nav a:hover {}
+  
+    nav.local {}
+    
+    nav.local a {}
+    
+    nav.local a:hover {}
+    
+    /*  -----  Typography  ----- */
+    p {}
+    br {}
+    ol, ul, dl {}
+    li {}
+    dt {}
+    dd {}
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family:'Anton SC', sans-serif;
+      line-height:1.5;
+      border-bottom: 2px solid var(--greyText);
+    } 
+    h1 {
+      font-size:2.4em;
+    }
+    h2 {}
+    h3 {}
+    h4 {}
+    h5 {}
+    h6 {}
+    
+    abbr {}
+    acronym {}
+    address {}
+    blockquote {}
+      q {}
+      cite {}
+    em {}
+    hr {}
+    mark {}
+    s {}
+    span {}
+    strong {}
+    sub {}
+    sup {}
+    time {}
+    
+    /*  ----- Coding or instructional typography ----- */
+    pre {}
+    code {}
+    kbd {}
+    samp {}
+    var {}
+    del {} 
+    ins {}
+    
+    /*  ----- Table ----- */
+    table {
+      width: 80%;
+    }
+    caption {}
+    thead {}
+    tbody {}
+    tfoot {}
+    tr {}
+    th {}
+    td {}
+      td:nth-child(1) {}
+    colgroup {}
+    data {}
+    datalist {}
+    
+    
+    /*  ----- Form ----- */
+    form {}
+    fieldset {}
+      legend {}
+    label {
+      margin-right: 1%;
+    }
+    button {
+      background-color: var(--darkGrey);
+      color: var(--white);
+      font-weight: bold;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 18px;
+    }
+    button:hover {
+      color: var(--white);
+      background-color: var(--black);
+    }
+    input, textarea {
+      background-color: var(--white);
+      color: var(--greyText);
+    }
+    textarea {
+      width: 50%;
+      height: 150px;
+    }
+    select {
+      background-color: var(--white);
+      color: var(--greyText);
+    }
+    *::placeholder {
+      color: var(--white);
+    }
+      optgroup {}
+      option {}
+    output {}
+    meter {}
+    progress {}
+    
+    
+    /* ----- Media ----- */
+    figure {}
+      figcaption {}
+      figure img {}
+    svg {}
+    picture {}
+      source {}
+    iframe {}
+    video {}
+    audio {}
+    embed {}
+    object {}
+    
+    /*  ----- Classes for alignment, positioning, widths, grids, embellishments, and animation -----  */
+    .gallery {}
+  
+  .gallery figure {}
+    
+    .floatright {}
+    .floatleft {}
+    .center-middle {}
+    
+    .ten {}
+    .twenty {}
+    .thirty {}
+    .forty {}
+    .fifty {}
+    .sixty {}
+    .seventy {}
+    .eighty {}
+    
+    .radius {}
+    .circle {}
+    .boxshadow {}
+    .tshadow {} 
+    .gradient {}
+    .shape {}
+
+    .trip-title {
+  font-size: 2em;
+  font-weight: bold;
+  color: var(--black);
+  text-shadow: 1px 1px 2px #888;
+  font-family: 'Anton SC', sans-serif;
+  text-align: center;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 2%;
+  background-color: white; /* default unselected */
+  color: black;
+  font-weight: bold;
+  border: 1px solid #444;
+  cursor: pointer;
+}
+
+.toggle-btn.selected {
+  background-color: var(--darkGrey); /* selected color */
+  color: var(--white);
+}
+
+.category {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--black);
+  color: var(--black);
+}
+
+.item, .packing-list {
+  padding-left: 1em;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+}
+
+.item.checked, .packing-list.checked {
+  text-decoration: line-through;
+  color: var(--greyText);
+}
+
+.item:hover, .packing-list:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+/* Modal overlay */
+.modal {
+  position: fixed;      /* stay in place relative to viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); /* darken background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Modal content box */
+.modal-content {
+    position: relative;   /* Make this the reference point for the close button */
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 200px;
+}
+
+.close {
+    position: absolute;   /* absolute relative to modal-content now */
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+/* Hidden helper */
+.hidden {
+  display: none;
+}
+
+.close:hover {
+    color: red;
+}
+    
+    @keyframes App-logo {}
+    
+    /*   ===== TABLET  media query overrides mobile styles ===== */
+    @media all and (min-width: 600px) {}
+    
+    /*   ===== DESKTOP  media query overrides mobile and tablet styles ===== */
+    @media all and (min-width: 1080px) {}
+    
+    /*   ===== PRINT  media query overrides previous styles =====  */
+    @media print {}
+
+    /* #root {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .logo {
+      height: 6em;
+      padding: 1.5em;
+      will-change: filter;
+      transition: filter 300ms;
+    }
+    .logo:hover {
+      filter: drop-shadow(0 0 2em #646cffaa);
+    }
+    .logo.react:hover {
+      filter: drop-shadow(0 0 2em #61dafbaa);
+    }
+    
+    @keyframes logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear;
+      }
+    }
+    
+    .card {
+      padding: 2em;
+    }
+    
+    .read-the-docs {
+      color: #888;
+    }
+    
+    
+     */

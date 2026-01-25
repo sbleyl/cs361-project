@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luggage Checklist - Add Items</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header with back & submit buttons -->
+<header style="display:flex; justify-content:space-between; padding:2% 5%; width:100%; box-sizing:border-box;">
+    <button id="back-btn">Back</button>
+    <button id="submit-item-btn">Create</button>
+</header>
+
+<!-- Add item. Main content -->
+<main style="display:flex; flex-direction:column; gap:5%; padding:5%; width:100%; box-sizing:border-box;">
+    <label> <!-- Dropdown for suggested items -->
+        Suggested Items (Autofill)
+        <select id="suggested-items" style="width:100%; padding:2%; box-sizing:border-box;">
+            <option value="">- Select -</option>
+            <optgroup label="Clothing"> <!-- Clothing options -->
+                <option value="Hat|clothing">Hat</option>
+                <option value="T-Shirt|clothing">T-Shirt</option>
+                <option value="Jeans|clothing">Jeans</option>
+                <option value="Shoes|clothing">Shoes</option>
+            </optgroup>
+            <optgroup label="Electronics">  <!-- Electronic options -->
+                <option value="Laptop|electronics">Laptop</option>
+                <option value="Phone|electronics">Phone</option>
+                <option value="Headphones|electronics">Headphones</option>
+                <option value="Charger|electronics">Charger</option>
+            </optgroup>
+            <optgroup label="Toiletries">   <!-- Toiletries options -->
+                <option value="Toothbrush|toiletries">Toothbrush</option>
+                <option value="Soap|toiletries">Soap</option>
+            </optgroup>
+        </select>
+    </label>
+
+    <!-- Item name input field -->
+    <label>
+        Item Name
+        <input id="item-name" type="text" maxlength="50" style="width:100%; padding:2%; box-sizing:border-box;">
+    </label>
+
+    <!-- Item type dropdown list -->
+    <label>
+        Item Type
+        <select id="item-type" style="width:100%; padding:2%; box-sizing:border-box;">
+            <option value="">- Select -</option>
+            <option value="clothing">Clothing</option>
+            <option value="electronics">Electronics</option>
+            <option value="documents">Documents</option>
+            <option value="toiletries">Toiletries</option>
+            <option value="medical">Medical</option>
+        </select>
+    </label>
+</main>
+
+<!-- Exit modal. Exit without saving? -->
+<div id="exit-modal" class="modal hidden"> 
+    <div class="modal-content">
+        <span id="close-modal" class="close">&times;</span>
+        <p>Are you sure you want to exit without saving?</p>
+        <div style="display:flex; justify-content:space-around; margin-top:1em;">
+            <button id="modal-no">No</button>
+            <button id="modal-yes">Yes</button>
+        </div>
+    </div>
+</div>
+
+<script src="add-items.js"></script>
+</body>
+</html>

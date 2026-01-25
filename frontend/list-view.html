@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luggage Checklist - View List</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Toggle button with selected state -->
+    <style> 
+        #unpacked-btn.selected,
+        #packed-btn.selected {
+            background-color: var(--black);
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header with back & add button + trip title -->
+<header style="display:flex; justify-content:space-between; padding:2% 5%; width:100%; box-sizing:border-box;">
+    <button id="back-btn">Back</button>
+    <div class="trip-title" id="trip-title">Trip Name</div>
+    <button id="add-items-btn">Add Items</button>
+</header>
+
+<!-- Toggle buttons for switching unpacked/packed items -->
+<div style="display:flex; justify-content:center; margin:3% 0; width:90%; margin-left:auto; margin-right:auto;">
+    <button id="unpacked-btn" style="flex:1; padding:2%;">Unpacked</button>
+    <button id="packed-btn" style="flex:1; padding:2%;">Packed</button>
+</div>
+
+<!-- Container for list items -->
+<main id="item-list-container" style="padding:3% 5%; width:90%; margin:0 auto; box-sizing:border-box;"></main>
+
+<!-- Exit modal. Exit without saving? -->
+<div id="exit-modal" class="modal hidden">
+    <div class="modal-content">
+        <span id="close-modal" class="close">&times;</span>
+        <p>Are you sure you want to exit?</p>
+        <div style="display:flex; justify-content:space-around; margin-top:1em;">
+            <button id="modal-no">No</button>
+            <button id="modal-yes">Yes</button>
+        </div>
+    </div>
+</div>
+
+<script src="list-view.js"></script>
+</body>
+</html>

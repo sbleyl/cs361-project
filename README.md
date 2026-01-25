@@ -1,3 +1,2 @@
-# cs361-test
-Testing for Assignment 2 #1
-Testing for Assignment 2 #2
+cs361-project: Luggage Checklist
+Made by Sean Bleyl

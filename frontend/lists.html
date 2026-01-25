@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luggage Checklist - Lists</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header with sort & create buttons -->
+    <header style="display:flex; justify-content:space-between; padding:2% 5%; width:100%; box-sizing:border-box;">
+        <button id="sort-btn">Sort</button>
+        <button id="create-list-btn">Create Packing List</button>
+    </header>
+
+    <!-- Intro instructions -->
+    <div style="text-align:center; margin-bottom:3%; width:90%; margin-left:auto; margin-right:auto;">
+        Create packing lists, add items quickly, and track what's packed so you never forget items
+    </div>
+
+    <!-- Container for packing lists -->
+    <main id="list-container" style="padding:3% 5%; width:90%; margin:0 auto 2rem auto; box-sizing:border-box;">
+        <!-- Lists loaded dynamically via JavaScript -->
+    </main>
+
+    <!-- Footer with settings button -->
+    <div style="background-color: var(--lightBlue);">
+        <footer style="display:flex; justify-content:flex-end;">
+            <button id="settings-btn">Settings</button>
+        </footer>
+    </div>
+
+    <!-- Sort Modal. How to sort lists -->
+    <div id="sort-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-sort-modal" class="close">&times;</span>
+            <p>How would you like to sort your lists?</p>
+            <div style="display:flex; justify-content:space-around; margin-top:1em;">
+                <button data-sort="az">A → Z</button>
+                <button data-sort="za">Z → A</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal. Still not complete, only version info -->
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-settings-modal" class="close">&times;</span>
+            <p>Created by Sean Bleyl</p>
+            <p>Ver 1.0.0</p>
+            <p>Will be adding to this in the future</p>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const listContainer = document.getElementById("list-container");
+
+        // Load saved lists from localStorage
+        const savedLists = JSON.parse(localStorage.getItem("packingLists") || "[]");
+
+        // Optional default lists
+        const defaultLists = [
+            "Vacation","Business","Road Trip","Camping","Cruise","Conference",
+            "Tailgate","Italy","France","Disneyland","Switzerland","Japan"
+        ];
+
+        // Merge saved lists with defaults, remove duplicates
+        let allLists = Array.from(new Set([...savedLists.map(l => l.name ? l.name : l), ...defaultLists]));
+
+        // Render lists dynamically
+        function renderLists() {
+            listContainer.innerHTML = "";   // clear container
+            allLists.forEach(list => {
+                const div = document.createElement("div");
+                div.className = "packing-list"; // each list item
+                div.textContent = list;
+                listContainer.appendChild(div);
+            });
+        }
+
+        renderLists();  // Initial render
+
+        // Clicking a list navigates to list-view
+        listContainer.addEventListener("click", (e) => {
+            if (e.target.classList.contains("packing-list")) {
+                const name = encodeURIComponent(e.target.textContent);
+                window.location.href = `list-view.html?list=${name}`;
+            }
+        });
+
+        // Redirect to create list page
+        document.getElementById("create-list-btn").addEventListener("click", () => {
+            window.location.href = "create-list.html";
+        });
+
+        // Sort Modal logic
+        const sortBtn = document.getElementById("sort-btn");
+        const sortModal = document.getElementById("sort-modal");
+        const closeSortModal = document.getElementById("close-sort-modal");
+
+        sortBtn.addEventListener("click", () => sortModal.classList.remove("hidden"));
+        closeSortModal.addEventListener("click", () => sortModal.classList.add("hidden"));
+        sortModal.addEventListener("click", (e) => {
+            if (e.target === sortModal) return sortModal.classList.add("hidden");   // Close if outside modal clicked
+            const sortType = e.target.dataset.sort; // Get sort type
+            if (!sortType) return;
+
+            allLists.sort((a, b) => sortType === "az" ? a.localeCompare(b) : b.localeCompare(a));
+            renderLists();
+            sortModal.classList.add("hidden");  // Close modal after sort
+        });
+
+        // Settings Modal logic
+        const settingsBtn = document.getElementById("settings-btn");
+        const settingsModal = document.getElementById("settings-modal");
+        const closeSettingsModal = document.getElementById("close-settings-modal");
+
+        settingsBtn.addEventListener("click", () => settingsModal.classList.remove("hidden"));
+        closeSettingsModal.addEventListener("click", () => settingsModal.classList.add("hidden"));
+        settingsModal.addEventListener("click", (e) => {
+            if (e.target === settingsModal) settingsModal.classList.add("hidden");  // Close if background clicked
+        });
+    </script>
+
+</body>
+</html>
