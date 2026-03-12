@@ -187,7 +187,6 @@
       color: var(--greyText);
     }
     *::placeholder {
-      color: var(--white);
     }
       optgroup {}
       option {}
@@ -271,6 +270,8 @@
   padding-left: 1em;
   cursor: pointer;
   padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between
 }
 
 .item.checked, .packing-list.checked {

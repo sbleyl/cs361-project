@@ -26,6 +26,23 @@ suggested.addEventListener("change", () => {
     itemTypeSelect.value = type;
 });
 
+// Auto-suggest category when item name is typed
+itemNameInput.addEventListener("input", async () => {
+    const name = itemNameInput.value.trim();
+    if (!name) return;
+
+    const res = await fetch('/categorization-data/categorize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ service: 'packing', text: name })
+    });
+    const data = await res.json();
+
+    if (data.category && data.category !== 'Uncategorized') {
+        itemTypeSelect.value = data.category.toLowerCase();
+    }
+});
+
 // Back button with exit modal
 backBtn.addEventListener("click", () => modal.classList.remove("hidden"));
 closeModal.addEventListener("click", () => modal.classList.add("hidden"));
@@ -33,8 +50,8 @@ modalNo.addEventListener("click", () => modal.classList.add("hidden"));
 modalYes.addEventListener("click", () => window.location.href = `list-view.html?list=${encodeURIComponent(listName)}`);
 modal.addEventListener("click", e => { if (e.target === modal) modal.classList.add("hidden"); });
 
-// Submit item
-submitBtn.addEventListener("click", () => {
+// Submit item to microservice
+submitBtn.addEventListener("click", async () => {
     const name = itemNameInput.value.trim();
     const type = itemTypeSelect.value;
 
@@ -42,30 +59,20 @@ submitBtn.addEventListener("click", () => {
     if (!name) { alert("Please enter an item name."); return; }
     if (!type) { alert("Please select an item type."); return; }
 
-    // Load existing lists
-    const allLists = JSON.parse(localStorage.getItem("packingLists") || "[]");
+    // Get list from microservice
+    const res = await fetch('/lists-data');
+    const allLists = await res.json();
+    const currentList = allLists.lists.find(l => l.list_name === listName);
 
-    // Find or create current list
-    let currentList = allLists.find(l => l.name === listName);
-    if (!currentList) {
-        currentList = { name: listName, items: [] };
-        allLists.push(currentList);
-    }
-    currentList.items = currentList.items || [];
+    if (!currentList) { alert("List not found."); return; }
 
-    // Prepare new item
-    const newItem = { name, type: capitalize(type), packed: false };
+    // Post new item to microservice
+    await fetch(`/lists-data/${currentList.id}/items`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ item_name: name, type: capitalize(type) })
+    });
 
-    // Insert after last item of same type
-    const sameTypeIndices = currentList.items.map((i, idx) => i.type === newItem.type ? idx : -1).filter(i => i !== -1);
-    if (sameTypeIndices.length === 0) {
-        currentList.items.push(newItem);
-    } else {
-        const lastIndex = sameTypeIndices[sameTypeIndices.length - 1];
-        currentList.items.splice(lastIndex + 1, 0, newItem);
-    }
-
-    // Save and redirect
-    localStorage.setItem("packingLists", JSON.stringify(allLists));
+    // Redirect back to list
     window.location.href = `list-view.html?list=${encodeURIComponent(listName)}`;
 });

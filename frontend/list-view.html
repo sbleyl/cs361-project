@@ -22,6 +22,25 @@
     <button id="add-items-btn">Add Items</button>
 </header>
 
+<!-- Weather section for destination -->
+<div id="weather-section" style="display:flex; justify-content:flex-end; width:90%; margin:0 auto 3% auto;">
+    <div id="weather-widget" style="width:40%; background-color:var(--white); border-radius:20px; padding:1em;">
+        <div style="display:flex; gap:8px; margin-bottom:8px;">
+            <input id="weather-input" type="text" placeholder="Search destination..." style="flex:1; padding:5px;">
+            <button id="weather-search-btn">Search</button>
+        </div>
+        <div id="weather-current" class="hidden" style="display:flex; flex-direction:column; gap:10px; padding:0.5em 0;">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <div id="weather-label" class="hidden">Current Weather:</div>
+                <img id="weather-icon" src="" alt="weather icon" class="hidden" style="width:40px;height:40px;">
+                <div id="weather-summary" style="cursor:pointer; padding:0.5em 0;" class="hidden"></div>
+                <button id="unit-toggle-btn" class="hidden">°C</button>
+            </div>
+            <div id="weather-forecast" class="hidden"></div>
+        </div>
+    </div>
+</div>
+
 <!-- Toggle buttons for switching unpacked/packed items -->
 <div style="display:flex; justify-content:center; margin:3% 0; width:90%; margin-left:auto; margin-right:auto;">
     <button id="unpacked-btn" style="flex:1; padding:2%;">Unpacked</button>
